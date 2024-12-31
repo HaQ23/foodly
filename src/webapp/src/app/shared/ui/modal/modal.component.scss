@@ -1,0 +1,35 @@
+.modal {
+    display: block;
+    &-dialog {
+      perspective: 1000px;
+      opacity: 0;
+      transform: translateY(-5%);
+      animation: showModal .3s ease-out forwards;
+    }
+    &-content {
+      transform-origin: right;
+      transition: transform 0.3s, opacity 0.15s linear;
+    }
+    &-backdrop {
+      opacity: 0;
+      transition: opacity 0.15s ease;
+  
+      &-active {
+        opacity: 0.5;
+      }
+    }
+    &-buttons {
+      gap: 10px;
+    }
+  
+    &-disabled > .modal-dialog > .modal-content {
+      transform: translateX(35%) rotateY(-45deg);
+    }
+  }
+  
+  @keyframes showModal {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }

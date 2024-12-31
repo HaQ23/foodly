@@ -1,0 +1,18 @@
+<app-modal [title]="'Usuń restauracje'">
+  <div modal-body>
+    <p class="fw-medium">Czy aby na pewno chcesz usunąć tą restauracje ?</p>
+  </div>
+  <div modal-buttons>
+    <button
+      (click)="nextConfirm()"
+      type="button"
+      class="btn btn-danger mx-2 py-2"
+    >
+      Usuń
+    </button>
+    <button (click)="nextReject()" type="button" class="btn btn-dark py-2">
+      Anuluj
+    </button>
+  </div>
+</app-modal>
+<app-loader *ngIf="loading"></app-loader>

@@ -1,0 +1,125 @@
+<section class="section d-flex flex-column  py-4 w-100">
+  <h2>Rozwiń swoją działalność z <span class="fw-bold">Foodly</span></h2>
+  <div class="form-container mt-3">
+    <form
+      [formGroup]="addRestaurantForm"
+      (ngSubmit)="submitRestaurantForm()"
+      class="d-flex flex-column"
+    >
+     <div class="d-flex gap-2">
+      <div class="d-flex flex-column mb-3">
+        <label class="form-label"
+          >Nazwa restauracji<sup class="text-danger">*</sup>
+          <input
+            formControlName="name"
+            type="text"
+            class="form-control mt-2"
+            [ngClass]="{
+              'is-valid': controls['name'].valid
+            }"
+          />
+        </label>
+      </div>
+      <div class="d-flex flex-column mb-3">
+        <label class="form-label"
+          >Miejscowość<sup class="text-danger">*</sup>
+          <input
+            formControlName="city"
+            type="text"
+            class="form-control mt-2"
+            [ngClass]="{
+              'is-valid': controls['city'].valid
+            }"
+          />
+        </label>
+      </div>
+     </div>
+      <div class="d-flex gap-2">
+        <div class="d-flex flex-column mb-3 p-0">
+          <label class="form-label"
+            >Województwo<sup class="text-danger">*</sup>
+            <input
+              type="text"
+              class="form-control mt-2"
+              formControlName="province"
+              [ngClass]="{
+                'is-valid': controls['province'].valid
+              }"
+            />
+          </label>
+        </div>
+        <div class="d-flex flex-column mb-3">
+          <label class="form-label"
+            >Kod pocztowy<sup class="text-danger">*</sup>
+            <input
+              type="text"
+              class="form-control mt-2"
+              formControlName="postCode"
+              [ngClass]="{
+                'is-valid': controls['postCode'].valid
+              }"
+            />
+          </label>
+        </div>
+      </div>
+      <div class="d-flex gap-2">
+        <div class="d-flex flex-column mb-3">
+          <label class="form-label"
+            >Ulica<sup class="text-danger">*</sup>
+            <input
+              type="text"
+              class="form-control mt-2"
+              formControlName="street"
+              [ngClass]="{
+                'is-valid': controls['street'].valid
+              }"
+            />
+          </label>
+        </div>
+        <div class="d-flex flex-column mb-3">
+          <label class="form-label"
+            >Numer budynku<sup class="text-danger">*</sup>
+            <input
+              type="text"
+              class="form-control mt-2"
+              formControlName="buildingNumber"
+              [ngClass]="{
+                'is-valid': controls['buildingNumber'].valid
+              }"
+            />
+          </label>
+        </div>
+      </div>
+      <div class="d-flex flex-column mb-3">
+        <label class="form-label"
+          >Kategoria restauracji<sup class="text-danger">*</sup>
+          <select
+            class="form-select form-select mt-2"
+            aria-label="Small select example"
+            formControlName="categories"
+            [ngClass]="{
+              'is-valid': controls['categories'].valid
+            }"
+          >
+            <option value="" disabled selected></option>
+            <option
+              *ngFor="let category of restaurantCategories; let i = index"
+              [ngValue]="category"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+        </label>
+      </div>
+      <p class="form-info fw-medium mt-2"><span class="text-danger">*</span> - pole wymagane</p>
+      <button
+        [disabled]="addRestaurantForm.invalid"
+        type="submit"
+        class="btn btn-primary mt-1 py-2"
+      >
+        Dodaj
+      </button>
+    </form>
+  </div>
+</section>
+<app-loader *ngIf="loading"></app-loader>

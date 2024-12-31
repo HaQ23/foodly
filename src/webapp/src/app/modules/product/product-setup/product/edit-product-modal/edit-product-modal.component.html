@@ -1,0 +1,86 @@
+<app-modal [title]="'Edycja produktu'">
+  <div modal-body>
+    <form class="d-flex flex-column" [formGroup]="editForm">
+      <div class="mb-3">
+        <label for="product-category-name" class="form-label"
+          >Nazwa<sup class="text-danger">*</sup></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="product-category-name"
+          formControlName="name"
+        />
+        <ng-container
+          *ngIf="
+            !editForm.valid &&
+            (editForm.get('name').touched || editForm.get('name').dirty)
+          "
+        >
+          <small
+            *ngIf="editForm.get('name').hasError('required')"
+            class="text-danger"
+            >To pole jest wymagane!</small
+          >
+          <small
+            *ngIf="editForm.get('name').hasError('minlength')"
+            class="text-danger"
+            >Minimalna wymagana długość to
+            {{ editForm.get("name").errors["minlength"]["requiredLength"] }}
+            znaków.</small
+          >
+        </ng-container>
+      </div>
+      <div class="mb-3">
+        <label for="product-category-description" class="form-label"
+          >Opis</label
+        >
+        <textarea
+          type="text"
+          class="form-control"
+          id="product-category-description"
+          formControlName="description"
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="product-category-price" class="form-label"
+          >Cena (PLN)<sup class="text-danger">*</sup></label
+        >
+        <input
+          type="number"
+          class="form-control"
+          id="product-category-price"
+          formControlName="price"
+        />
+        <ng-container
+          *ngIf="
+            !editForm.valid &&
+            (editForm.get('price').touched || editForm.get('price').dirty)
+          "
+        >
+          <small
+            *ngIf="editForm.get('price').hasError('required')"
+            class="text-danger"
+            >To pole jest wymagane!</small
+          >
+        </ng-container>
+      </div>
+
+      <div class="mb-3">
+        <label for="product-category" class="form-label">Kategoria</label>
+        <select class="form-select" formArrayName="categories">
+          <option selected disabled></option>
+          <option
+            [value]="category.id"
+            *ngFor="let category of productCategoryList"
+          >
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
+
+      <small><span class="text-danger">*</span> - pole wymagane</small>
+    </form>
+  </div>
+</app-modal>
+<app-loader *ngIf="loading"></app-loader>

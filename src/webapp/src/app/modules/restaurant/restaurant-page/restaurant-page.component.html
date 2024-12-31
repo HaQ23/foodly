@@ -1,0 +1,328 @@
+
+<div class="wrapper" *ngIf="restaurantData && products && productCategories">
+  <img
+    class="store__image object-fit-cover"
+    src="../../../../assets/images/store/store-placeholder.jpeg"
+    alt="Store placeholder"
+    loading="lazy"
+  />
+  <div class="store__header d-flex align-items-center justify-content-between">
+    <div class="store__info mt-5">
+      <h1 class="store__name h1">
+        {{ restaurantData.name }} - {{ restaurantData.street }}
+        {{ restaurantData.buildingNumber }}
+      </h1>
+      <p class="store__location">{{restaurantData.city}}, {{restaurantData.province}}, {{restaurantData.postCode}}</p>
+      <div class="store__categories d-flex align-items-center gap-2">
+        <small
+          class="text-body-secondary"
+          *ngFor="let category of restaurantData.categories; let last = last"
+          >{{ category.name }}<span *ngIf="!last">,</span>
+        </small>
+        <span>•</span>
+        <small class="text-decoration-underline"><a class="store__more-info text-dark cursor-pointer" (click)="openRestaurantDetailsModal()">Więcej informacji</a></small>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a
+        class="btn btn-dark dropdown-toggle"
+        href="#"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Zarządzaj
+      </a>
+
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <a
+            class="dropdown-item cursor-pointer"
+            (click)="openCreateProductCategoryModal()"
+            >Dodaj kategorię produktów</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item cursor-pointer" (click)="openCreateProductModal()"
+            >Dodaj produkt</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item cursor-pointer" (click)="openRestaurantEditModal()"
+            >Edytuj restaurację</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item cursor-pointer" (click)="openRestaurantDeleteModal()"
+            >Usuń restaurację</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <ng-container *ngIf="products.length > 0; else noProductsAvailable">
+    <div class="store__offer d-flex flex-row-reverse justify-content-end">
+      <div class="store__menu d-flex flex-column gap-5 pt-3 col-10">
+        <ng-container
+          *ngFor="let productCategory of productCategories"
+        >
+          <section
+            *ngIf="productsByCategory[productCategory.id].length > 0"
+            [id]="productCategory.name | replaceSpaces"
+            class="store__category mb-5 d-flex gap-4 flex-wrap"
+          >
+            <h2 class="store__category-heading col-12 h3">
+              {{ productCategory.name }}
+            </h2>
+  
+            <div
+              *ngFor="let product of productsByCategory[productCategory.id]"
+              class="store__product cursor-pointer card px-1 border-0"
+              style="width: 23.3%"
+            >
+              <img
+                src="../../../../assets/images/store/product-placeholder.jpeg"
+                class="store__product-image card-img-top object-fit-cover"
+                alt="Product placeholder"
+                loading="lazy"
+              />
+              <button
+                class="store__product-button position-absolute p-2 border-0 btn btn-light fw-semibold"
+                (click)="openProductPreviewModal(product.id)"
+              >
+                Szybki podgląd
+              </button>
+              <div class="card-body px-0">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.price }} zł</p>
+              </div>
+            </div>
+          </section>
+        </ng-container>
+        <ng-container *ngIf="uncategorizedProducts.length > 0">
+          <section
+            id="other-products"
+            class="store__category mb-5 d-flex gap-4 flex-wrap"
+          >
+            <h2 class="store__category-heading col-12 h3">
+              Pozostałe produkty
+            </h2>
+  
+            <div
+              *ngFor="let product of uncategorizedProducts"
+              class="store__product cursor-pointer card px-1 border-0"
+              style="width: 23.3%"
+            >
+              <img
+                src="../../../../assets/images/store/product-placeholder.jpeg"
+                class="store__product-image card-img-top object-fit-cover"
+                alt="Product placeholder"
+              />
+              <button
+                class="store__product-button position-absolute p-2 border-0 btn btn-light fw-semibold"
+                (click)="openProductPreviewModal(product.id)"
+              >
+                Szybki podgląd
+              </button>
+              <div class="card-body px-0">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.price }} zł</p>
+              </div>
+            </div>
+          </section>
+        </ng-container>
+      </div>
+      <div class="store__categories col-2">
+        <ul
+          id="nav"
+          class="store__categories-list sticky-top pt-3 d-flex flex-column gap-4"
+        >
+          <ng-container
+            *ngFor="let productCategory of productCategories"
+          >
+            <li
+              class="store__categories-item"
+              *ngIf="productsByCategory[productCategory.id].length > 0"
+            >
+              <a
+                class="store__categories-link cursor-pointer"
+                viewportVisible="#{{ productCategory.name | replaceSpaces }}"
+                viewportVisibleClass="store__categories-link--active"
+                scrollToAnchor="{{ productCategory.name | replaceSpaces }}"
+                >{{ productCategory.name }}</a
+              >
+            </li>
+          </ng-container>
+          <li
+            class="store__categories-item"
+            *ngIf="uncategorizedProducts.length > 0"
+          >
+            <a
+              class="store__categories-link cursor-pointer"
+              viewportVisible="#other-products"
+              viewportVisibleClass="store__categories-link--active"
+              scrollToAnchor="other-products"
+              >Pozostałe Produkty</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #noProductsAvailable>
+    <div class="alert alert-warning col-12 mt-5" role="alert">
+      Restauracja aktualnie nie posiada dostępnej oferty.
+    </div>
+  </ng-template>
+</div>
+
+<div class="wrapper" *ngIf="!restaurantData || !products || !productCategories">
+  <svg
+    class="bd-placeholder-img card-img-top"
+    width="100%"
+    height="180"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-label="Placeholder"
+    preserveAspectRatio="xMidYMid slice"
+    focusable="false"
+  >
+    <title>Placeholder</title>
+    <rect width="100%" height="100%" fill="#868e96"></rect>
+  </svg>
+  <header
+    class="store__header d-flex align-items-center justify-content-between"
+  >
+    <div class="store__info mt-5 w-50">
+      <h1 class="store__name h1 placeholder-glow">
+        <span class="placeholder placeholder-sm col-10"></span>
+      </h1>
+      <p class="store__name h1 placeholder-glow">
+        <span class="placeholder placeholder-xs col-4"></span>
+      </p>
+      <p class="store__name h1 placeholder-glow">
+        <span class="placeholder placeholder-xs col-3"></span>
+      </p>
+    </div>
+  </header>
+  <div class="store__offer d-flex">
+    <div class="store__categories col-2">
+      <ul
+        id="nav"
+        class="store__categories-list sticky-top pt-3 d-flex flex-column gap-4"
+      >
+        <li class="store__categories-item placeholder-glow">
+          <a class="placeholder col-8 bg-secondary"></a>
+        </li>
+        <li class="store__categories-item placeholder-glow">
+          <a class="placeholder col-8 bg-secondary"></a>
+        </li>
+        <li class="store__categories-item placeholder-glow">
+          <a class="placeholder col-8 bg-secondary"></a>
+        </li>
+        <li class="store__categories-item placeholder-glow">
+          <a class="placeholder col-8 bg-secondary"></a>
+        </li>
+      </ul>
+    </div>
+    <div class="store__menu pt-3">
+      <section class="store__category mb-5 d-flex gap-4 flex-wrap">
+        <h2 class="store__category-heading col-12 placeholder-glow">
+          <span class="placeholder col-4"></span>
+        </h2>
+        <div class="card px-1 border-0" aria-hidden="true" style="width: 23.3%">
+          <svg
+            class="bd-placeholder-img card-img-top"
+            width="100%"
+            height="180"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Placeholder"
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false"
+          >
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#868e96"></rect>
+          </svg>
+          <div class="card-body px-0">
+            <h5 class="card-title placeholder-glow">
+              <span class="placeholder col-10"></span>
+            </h5>
+            <p class="card-text placeholder-glow">
+              <span class="placeholder col-2"></span>
+            </p>
+          </div>
+        </div>
+        <div class="card px-1 border-0" aria-hidden="true" style="width: 23.3%">
+          <svg
+            class="bd-placeholder-img card-img-top"
+            width="100%"
+            height="180"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Placeholder"
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false"
+          >
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#868e96"></rect>
+          </svg>
+          <div class="card-body px-0">
+            <h5 class="card-title placeholder-glow">
+              <span class="placeholder col-10"></span>
+            </h5>
+            <p class="card-text placeholder-glow">
+              <span class="placeholder col-2"></span>
+            </p>
+          </div>
+        </div>
+        <div class="card px-1 border-0" aria-hidden="true" style="width: 23.3%">
+          <svg
+            class="bd-placeholder-img card-img-top"
+            width="100%"
+            height="180"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Placeholder"
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false"
+          >
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#868e96"></rect>
+          </svg>
+          <div class="card-body px-0">
+            <h5 class="card-title placeholder-glow">
+              <span class="placeholder col-10"></span>
+            </h5>
+            <p class="card-text placeholder-glow">
+              <span class="placeholder col-2"></span>
+            </p>
+          </div>
+        </div>
+        <div class="card px-1 border-0" aria-hidden="true" style="width: 23.3%">
+          <svg
+            class="bd-placeholder-img card-img-top"
+            width="100%"
+            height="180"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Placeholder"
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false"
+          >
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#868e96"></rect>
+          </svg>
+          <div class="card-body px-0">
+            <h5 class="card-title placeholder-glow">
+              <span class="placeholder col-10"></span>
+            </h5>
+            <p class="card-text placeholder-glow">
+              <span class="placeholder col-2"></span>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

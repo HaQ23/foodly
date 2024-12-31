@@ -1,0 +1,48 @@
+<app-modal [title]="'Zmodyfikuj kategorie'">
+  <div modal-body>
+    <form [formGroup]="modifyCategoryForm" class="d-flex flex-column mt-3">
+      <div class="d-flex flex-column mb-3">
+        <label class="form-label"
+          >Nazwa kategorii*
+          <input
+            formControlName="name"
+            type="text"
+            class="form-control mt-2"
+            [ngClass]="{
+              'is-invalid': controls['name'].invalid
+            }"
+          />
+        </label>
+      </div>
+      <div class="d-flex flex-column mb-3">
+        <label class="form-label"
+          >Icona*
+          <input
+            formControlName="icon"
+            type="text"
+            class="form-control mt-2"
+            [ngClass]="{
+              'is-invalid': controls['icon'].invalid
+            }"
+          />
+        </label>
+      </div>
+    </form>
+  </div>
+  <div modal-buttons>
+    <button
+      (click)="nextConfirm()"
+      type="button"
+      class="btn btn-dark mx-2 py-2"
+      [disabled]="
+        this.modifyCategoryForm.invalid || !this.modifyCategoryForm.dirty
+      "
+    >
+      Zatwierdż
+    </button>
+    <button (click)="nextReject()" type="button" class="btn btn-danger py-2">
+      Anuluj
+    </button>
+  </div>
+</app-modal>
+<app-loader *ngIf="loading"></app-loader>

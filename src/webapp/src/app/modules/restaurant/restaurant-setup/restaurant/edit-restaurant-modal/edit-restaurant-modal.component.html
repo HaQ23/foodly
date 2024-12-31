@@ -1,0 +1,177 @@
+<app-modal [title]="'Edycja restauracji'">
+  <div modal-body>
+    <form class="d-flex flex-column" [formGroup]="editForm">
+      <div class="mb-3">
+        <label for="restaurant-name" class="form-label"
+          >Nazwa restauracji<sup class="text-danger">*</sup></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="restaurant-name"
+          formControlName="name"
+        />
+        <small *ngIf="editForm.controls['name'].invalid" class="text-danger"
+          >To pole jest wymagane!</small
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="restaurant-city" class="form-label"
+          >Miejscowość<sup class="text-danger">*</sup></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="restaurant-city"
+          formControlName="city"
+        />
+        <small *ngIf="editForm.controls['city'].invalid" class="text-danger"
+          >To pole jest wymagane!</small
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="restaurant-province" class="form-label"
+          >Województwo<sup class="text-danger">*</sup></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="restaurant-province"
+          formControlName="province"
+        />
+        <small *ngIf="editForm.controls['province'].invalid" class="text-danger"
+          >To pole jest wymagane!</small
+        >
+      </div>
+      <div class="mb-3">
+        <label for="restaurant-postCode" class="form-label"
+          >Kod pocztowy<sup class="text-danger">*</sup></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="restaurant-postCode"
+          formControlName="postCode"
+        />
+        <small *ngIf="editForm.controls['postCode'].invalid" class="text-danger"
+          >To pole jest wymagane!</small
+        >
+      </div>
+      <div class="mb-3">
+        <label for="restaurant-street" class="form-label"
+          >Ulica<sup class="text-danger">*</sup></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="restaurant-street"
+          formControlName="street"
+        />
+        <small
+          *ngIf="editForm.controls['street'].invalid"
+          class="text-danger"
+          class="text-danger"
+          >To pole jest wymagane!</small
+        >
+      </div>
+      <div class="mb-3">
+        <label for="restaurant-buildingNumber" class="form-label"
+          >Numer budynku<sup class="text-danger">*</sup></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="restaurant-buildingNumber"
+          formControlName="buildingNumber"
+        />
+        <small
+          *ngIf="editForm.controls['buildingNumber'].invalid"
+          class="text-danger"
+          >To pole jest wymagane!</small
+        >
+      </div>
+      <div class="mb-3">
+        <label for="restaurant-photo" class="form-label"
+          >Logo restauracji<sup class="text-danger">*</sup></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="restaurant-photo"
+          formControlName="photo"
+        />
+        <small *ngIf="editForm.controls['photo'].invalid" class="text-danger"
+          >To pole jest wymagane!</small
+        >
+      </div>
+      <div class="mb-3">
+        <div class="dropdown">
+          <button
+            class="btn btn-light dropdown-toggle border"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Wybierz kategorie
+          </button>
+          <div class="dropdown-menu" (click)="$event.stopPropagation()">
+            <div class="search-box">
+              <input
+    
+                type="text"
+                #searchTerm
+                placeholder="Szukaj kategorii"
+                class="input-search form-control"
+                role="searchbox"
+              />
+              <i class="bi bi-search"></i>
+            </div>
+            <ul
+              *ngIf="
+                filteredRestaurantCategory &&
+                filteredRestaurantCategory.length > 0
+              "
+              class="dropdown-items"
+            >
+              <li
+                class="dropdown-item"
+                *ngFor="
+                  let restaurantCategory of filteredRestaurantCategory;
+                  let i = index
+                "
+              >
+                <label class="w-100 label">
+                  <input
+                    class="checkbox"
+                    (change)="onCheckChange($event)"
+                    type="checkbox"
+                    [value]="restaurantCategory.code"
+                    [checked]="isChecked(restaurantCategory.code)"
+                  />
+                  {{ restaurantCategory.name }}
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <small><span class="text-danger">*</span> - pole wymagane</small>
+    </form>
+  </div>
+  <div modal-buttons>
+    <button
+      (click)="nextConfirm()"
+      type="button"
+      class="btn btn-dark mx-2 py-2"
+      [disabled]="this.editForm.invalid || !this.editForm.dirty"
+    >
+      Zatwierdż
+    </button>
+    <button (click)="nextReject()" type="button" class="btn btn-danger py-2">
+      Anuluj
+    </button>
+  </div>
+</app-modal>
+<app-loader *ngIf="loading"></app-loader>

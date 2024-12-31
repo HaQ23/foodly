@@ -1,0 +1,68 @@
+<nav class="navbar navbar-light py-3">
+  <div class="navbar__container d-flex align-items-center px-3">
+    <div class="box d-flex align-items-center gap-2">
+      <button
+        (click)="toggleSidebar()"
+        class="navbar__btn border-0 bg-transparent fs-4"
+        type="button"
+        aria-label="Otwórz nawigacje"
+      >
+        <i class="bi bi-list fs-3"></i>
+      </button>
+
+      <a
+        routerLink="/"
+        class="navbar__logo text-decoration-none fs-3 text-dark fw-medium"
+        >Foodly</a
+      >
+    </div>
+    <button type="button" class="btn btn-dark fw-medium py-2 px-4">
+      Zaloguj się
+    </button>
+  </div>
+</nav>
+<div [ngClass]="{open: isOpenSidebar}" class="sidebar position-fixed top-0 left-0">
+  <div [ngClass]="{open: isOpenSidebar}" class="sidebar__container bg-light p-3 d-flex flex-column gap-2">
+    <button
+      (click)="toggleSidebar()"
+      class="close-btn border-0 bg-transparent px-0 align-self-start mb-2"
+      type="button"
+      aria-label="Zamknij nawigacje"
+    >
+      <i class="bi bi-x-lg fs-3"></i>
+    </button>
+    <a
+      (click)="toggleSidebar()"
+      routerLink="restaurant/setup"
+      class="text-decoration-none text-dark mt-3 fw-medium"
+      ><i class="bi bi-shop fw-bold"></i> <span class="px-2">Dodaj swoją restauracje</span></a
+    >
+    <a
+      (click)="toggleSidebar()"
+      routerLink="restaurant/setup/category"
+      class="text-decoration-none text-dark mt-3 fw-medium"
+      ><i class="bi bi-bookmark-check"></i> <span class="px-2">Dodaj kategorię restauracji</span></a
+    >
+    <div class="d-flex gap-2 sidebar__auth-buttons">
+      <a
+        (click)="toggleSidebar()"
+        routerLink="/"
+        type="button"
+        class="btn btn-dark py-2"
+        >Zaloguj się</a
+      >
+      <a
+        (click)="toggleSidebar()"
+        routerLink="/"
+        type="button"
+        class="btn btn-secondary py-2"
+        >Zarejestruj się</a
+      >
+    </div>
+  </div>
+
+  <div
+    (click)="toggleSidebar()"
+    class="sidebar__shadow position-absolute top-0 left-0"
+  ></div>
+</div>

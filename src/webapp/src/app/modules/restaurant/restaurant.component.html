@@ -1,0 +1,43 @@
+<div class=" mt-4">
+  <section *ngIf="restaurantCategoriesArr" class="overflow-x-hidden mt-4">
+    <ul
+      class="list-container list-unstyled d-flex flex-nowrap gap-4  border-bottom pb-3"
+    >
+      <li
+        *ngFor="let restaurantCategory of restaurantCategoriesArr"
+        class="d-flex flex-column gap-2 aling-items-center mt-5"
+      >
+        <img
+          src="../../../assets/icons/restaurant-categories/default.png"
+          class="card-img-top rounded"
+          alt="zdjęcie restauracji"
+        />
+        <span class="mt-2 text-center category__text">{{ restaurantCategory.name }}</span>
+      </li>
+    </ul>
+  </section>
+  <section class="mt-5">
+    <h2>Restauracje blisko ciebie</h2>
+    <p class="mb-5">Zamów swój kolejny posiłek już teraz!</p>
+    <p *ngIf="!restaurantsArr" class="text-center">
+      Brak aktualnie restauracji możliwych do wyświetlenia
+    </p>
+    <ul class="restaurants list-unstyled">
+      <li class="restaurant" *ngFor="let restaurant of restaurantsArr" [routerLink]="['/restaurant', restaurant.name | replaceSpaces, restaurant.id]">
+        <div class="card border-0">
+          <img
+            src="../../../assets/images/restaurants/default.webp"
+            class="card-img-restaurant rounded"
+            alt="zdjęcie restauracji"
+          />
+          <div class="card-body px-0">
+            <h5 class="card-title">{{ restaurant.name }}</h5>
+            <p class="card-text">
+              {{ restaurant.city }} - {{ restaurant.street }} {{ restaurant.buildingNumber }}
+            </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+</div>

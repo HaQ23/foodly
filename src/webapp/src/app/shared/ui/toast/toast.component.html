@@ -1,0 +1,58 @@
+<div
+  [@toastAnimationTop]="
+    toast.visible && toast.positionY === 'top' ? 'open' : 'close'
+  "
+  [@toastAnimationBottom]="
+    toast.visible && toast.positionY === 'bottom' ? 'open' : 'close'
+  "
+  class="toast align-items-center text-bg-success border-0 d-block shadow position-fixed start-50 my-3 mx-3"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+  [attr.aria-hidden]="toast.visible ? 'false' : 'true'"
+  [ngClass]="{
+    'text-bg-success': toast.type === 'success',
+    'text-bg-danger': toast.type === 'error',
+    'text-bg-info': toast.type === 'info',
+    'text-bg-warning': toast.type === 'warn',
+    'top-0': toast.positionY === 'top',
+    'bottom-0': toast.positionY === 'bottom',
+    'start-0': toast.positionX === 'left',
+    'start-50': toast.positionX === 'center',
+    'translate-middle-x': toast.positionX === 'center',
+    'end-0': toast.positionX === 'right',
+    'toast__hidden': toast.visible === false,
+  }"
+>
+  <div class="d-flex">
+    <div class="toast-body fs-6 py-2 d-flex align-items-center gap-3">
+      <i
+        *ngIf="toast.type === 'warn'"
+        class="toast-icon bi bi-exclamation-triangle fs-3 text-white"
+      ></i>
+      <i
+        *ngIf="toast.type === 'error'"
+        class="toast-icon bi bi-exclamation-octagon fs-3 text-white"
+      ></i>
+      <i
+        *ngIf="toast.type === 'info'"
+        class="toast-icon bi bi-info-circlefs-3 text-white"
+      ></i>
+      <i
+        *ngIf="toast.type === 'success'"
+        class="toast-icon bi bi-check-lg fs-3 text-white"
+      ></i>
+      <p class="toast-description p-0 m-0 fs-7 text-white">
+        {{ toast.description }}
+      </p>
+    </div>
+
+    <button
+      (click)="closeToast()"
+      type="button"
+      class="btn-close btn-close-white me-2 m-auto fs-6"
+      data-bs-dismiss="toast"
+      aria-label="Close"
+    ></button>
+  </div>
+</div>

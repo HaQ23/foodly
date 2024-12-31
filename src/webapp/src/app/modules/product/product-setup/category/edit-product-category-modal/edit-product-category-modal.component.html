@@ -1,0 +1,38 @@
+<app-modal [title]="'Edycja kategorii produktów'">
+  <div modal-body>
+    <form class="d-flex flex-column" [formGroup]="setupForm">
+      <div class="mb-3">
+        <label for="product-category-name" class="form-label"
+          >Nazwa<sup class="text-danger">*</sup></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="product-category-name"
+          formControlName="name"
+        />
+        <ng-container
+          *ngIf="
+            !setupForm.valid &&
+            (setupForm.get('name').touched || setupForm.get('name').dirty)
+          "
+        >
+          <small
+            *ngIf="setupForm.get('name').hasError('required')"
+            class="text-danger"
+            >To pole jest wymagane!</small
+          >
+          <small
+            *ngIf="setupForm.get('name').hasError('minlength')"
+            class="text-danger"
+            >Minimalna wymagana długość to
+            {{ setupForm.get("name").errors["minlength"]["requiredLength"] }}
+            znaków.</small
+          >
+        </ng-container>
+      </div>
+      <small><span class="text-danger">*</span> - pole wymagane</small>
+    </form>
+  </div>
+</app-modal>
+<app-loader *ngIf="loading"></app-loader>

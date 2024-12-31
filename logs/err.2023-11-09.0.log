@@ -1,0 +1,262 @@
+2023-11-09 00:10:45.187 ERROR 21772 --- [http-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: null value in column "photo" of relation "s_restaurant" violates not-null constraint
+  Szczegóły: Failing row contains (2, ccc, aa, aaaaa, aa, 36-221, ebg, null, null).
+2023-11-09 00:10:45.206 ERROR 21772 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [photo" of relation "s_restaurant]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement] with root cause
+
+org.postgresql.util.PSQLException: ERROR: null value in column "photo" of relation "s_restaurant" violates not-null constraint
+  Szczegóły: Failing row contains (2, ccc, aa, aaaaa, aa, 36-221, ebg, null, null).
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:167)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at com.p6spy.engine.wrapper.PreparedStatementWrapper.executeUpdate(PreparedStatementWrapper.java:94)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:46)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:3571)
+	at org.hibernate.persister.entity.AbstractEntityPersister.updateOrInsert(AbstractEntityPersister.java:3438)
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:3852)
+	at org.hibernate.action.internal.EntityUpdateAction.execute(EntityUpdateAction.java:201)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604)
+	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:723)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:344)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107)
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1407)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:489)
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3290)
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2425)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:449)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:562)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:654)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:407)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at pl.foodly.modules.restaurant.setup.restaurant.application.service.RestaurantSetupService$$EnhancerBySpringCGLIB$$977a149e.updateRestaurant(<generated>)
+	at pl.foodly.modules.restaurant.setup.restaurant.application.web.controller.RestaurantSetupController.updateRestaurant(RestaurantSetupController.java:34)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:684)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1787)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+
+2023-11-09 17:28:56.345 ERROR 18328 --- [main] o.f.core.internal.command.DbMigrate      : Migration of schema "public" to version "1.003 - add seeds" failed! Changes successfully rolled back.
+2023-11-09 17:28:56.431 ERROR 18328 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.command.DbMigrate$FlywayMigrateException: Migration V1.003__add_seeds.sql failed
+--------------------------------------
+SQL State  : 23505
+Error Code : 0
+Message    : ERROR: duplicate key value violates unique constraint "s_restaurant_pkey"
+  Szczegóły: Key (id)=(1) already exists.
+Location   : db/migration/V1.003__add_seeds.sql (C:\Users\dobos\Desktop\projekty\foodly\target\classes\db\migration\V1.003__add_seeds.sql)
+Line       : 27
+Statement  : INSERT INTO s_restaurant (id, name, city, street, building_number, post_code, province, photo, owner_id)
+VALUES
+(1, 'Trattoria del Gusto', 'Warszawa', 'Nowy Świat', '123', '00-456', 'Mazowieckie', 'trattoria_photo.jpg', 'username1'),
+(2, 'Thai Spice', 'Kraków', 'Rynek Główny', '45', '30-062', 'Małopolskie', 'thai_spice_photo.jpg', 'username2'),
+(3, 'Sakura Sushi', 'Gdańsk', 'Długa', '67', '80-831', 'Pomorskie', 'sakura_sushi_photo.jpg', 'username3'),
+(4, 'Spice of India', 'Warszawa', 'Marszałkowska', '89', '02-678', 'Mazowieckie', 'spice_of_india_photo.jpg', 'username4'),
+(5, 'Mexican Fiesta', 'Kraków', 'Sławkowska', '34', '31-014', 'Małopolskie', 'mexican_fiesta_photo.jpg', 'username5'),
+(6, 'Olive Garden', 'Gdynia', 'Kościuszki', '56', '81-745', 'Pomorskie', 'olive_garden_photo.jpg', 'username6'),
+(7, 'Sushi Master', 'Poznań', 'Święty Marcin', '78', '61-804', 'Wielkopolskie', 'sushi_master_photo.jpg', 'username3'),
+(8, 'Green Eats', 'Wrocław', 'Kazimierza Wielkiego', '12', '50-077', 'Dolnośląskie', 'green_eats_photo.jpg', 'username2'),
+(9, 'Burger Heaven', 'Łódź', 'Piotrkowska', '23', '90-001', 'Łódzkie', 'burger_heaven_photo.jpg', 'username1'),
+(10, 'Pizza Palace', 'Katowice', 'Mariacka', '56', '40-014', 'Śląskie', 'pizza_palace_photo.jpg', 'username4'),
+(11, 'Pasta Paradise', 'Kraków', 'ul. Szewska', '67', '31-009', 'Małopolskie', 'pasta_paradise_photo.jpg', 'username11'),
+(12, 'Tom Yum Express', 'Warszawa', 'Chmielna', '45', '00-021', 'Mazowieckie', 'tom_yum_express_photo.jpg', 'username12'),
+(13, 'Tokyo Bites', 'Poznań', 'Żydowska', '23', '61-766', 'Wielkopolskie', 'tokyo_bites_photo.jpg', 'username13'),
+(14, 'Curry Kingdom', 'Wrocław', 'Świdnicka', '89', '50-069', 'Dolnośląskie', 'curry_kingdom_photo.jpg', 'username14'),
+(15, 'Taco Haven', 'Gdańsk', 'ul. Długa', '34', '80-001', 'Pomorskie', 'taco_haven_photo.jpg', 'username7'),
+(16, 'Oregano Fresh', 'Łódź', 'Narutowicza', '56', '90-102', 'Łódzkie', 'oregano_fresh_photo.jpg', 'username6'),
+(17, 'Greek Delight', 'Katowice', '3 Maja', '78', '40-001', 'Śląskie', 'greek_delight_photo.jpg', 'username4'),
+(18, 'Sashimi Sensation', 'Kraków', 'ul. Floriańska', '12', '31-021', 'Małopolskie', 'sashimi_sensation_photo.jpg', 'username3'),
+(19, 'Healthy Bites', 'Poznań', 'Rynek Jeżycki', '56', '61-080', 'Wielkopolskie', 'healthy_bites_photo.jpg', 'username1'),
+(20, 'BBQ Bliss', 'Wrocław', 'Kiełbaśnicza', '23', '50-111', 'Dolnośląskie', 'bbq_bliss_photo.jpg', 'username2')
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at pl.foodly.Main.main(Main.java:9)
+Caused by: org.flywaydb.core.internal.command.DbMigrate$FlywayMigrateException: Migration V1.003__add_seeds.sql failed
+--------------------------------------
+SQL State  : 23505
+Error Code : 0
+Message    : ERROR: duplicate key value violates unique constraint "s_restaurant_pkey"
+  Szczegóły: Key (id)=(1) already exists.
+Location   : db/migration/V1.003__add_seeds.sql (C:\Users\dobos\Desktop\projekty\foodly\target\classes\db\migration\V1.003__add_seeds.sql)
+Line       : 27
+Statement  : INSERT INTO s_restaurant (id, name, city, street, building_number, post_code, province, photo, owner_id)
+VALUES
+(1, 'Trattoria del Gusto', 'Warszawa', 'Nowy Świat', '123', '00-456', 'Mazowieckie', 'trattoria_photo.jpg', 'username1'),
+(2, 'Thai Spice', 'Kraków', 'Rynek Główny', '45', '30-062', 'Małopolskie', 'thai_spice_photo.jpg', 'username2'),
+(3, 'Sakura Sushi', 'Gdańsk', 'Długa', '67', '80-831', 'Pomorskie', 'sakura_sushi_photo.jpg', 'username3'),
+(4, 'Spice of India', 'Warszawa', 'Marszałkowska', '89', '02-678', 'Mazowieckie', 'spice_of_india_photo.jpg', 'username4'),
+(5, 'Mexican Fiesta', 'Kraków', 'Sławkowska', '34', '31-014', 'Małopolskie', 'mexican_fiesta_photo.jpg', 'username5'),
+(6, 'Olive Garden', 'Gdynia', 'Kościuszki', '56', '81-745', 'Pomorskie', 'olive_garden_photo.jpg', 'username6'),
+(7, 'Sushi Master', 'Poznań', 'Święty Marcin', '78', '61-804', 'Wielkopolskie', 'sushi_master_photo.jpg', 'username3'),
+(8, 'Green Eats', 'Wrocław', 'Kazimierza Wielkiego', '12', '50-077', 'Dolnośląskie', 'green_eats_photo.jpg', 'username2'),
+(9, 'Burger Heaven', 'Łódź', 'Piotrkowska', '23', '90-001', 'Łódzkie', 'burger_heaven_photo.jpg', 'username1'),
+(10, 'Pizza Palace', 'Katowice', 'Mariacka', '56', '40-014', 'Śląskie', 'pizza_palace_photo.jpg', 'username4'),
+(11, 'Pasta Paradise', 'Kraków', 'ul. Szewska', '67', '31-009', 'Małopolskie', 'pasta_paradise_photo.jpg', 'username11'),
+(12, 'Tom Yum Express', 'Warszawa', 'Chmielna', '45', '00-021', 'Mazowieckie', 'tom_yum_express_photo.jpg', 'username12'),
+(13, 'Tokyo Bites', 'Poznań', 'Żydowska', '23', '61-766', 'Wielkopolskie', 'tokyo_bites_photo.jpg', 'username13'),
+(14, 'Curry Kingdom', 'Wrocław', 'Świdnicka', '89', '50-069', 'Dolnośląskie', 'curry_kingdom_photo.jpg', 'username14'),
+(15, 'Taco Haven', 'Gdańsk', 'ul. Długa', '34', '80-001', 'Pomorskie', 'taco_haven_photo.jpg', 'username7'),
+(16, 'Oregano Fresh', 'Łódź', 'Narutowicza', '56', '90-102', 'Łódzkie', 'oregano_fresh_photo.jpg', 'username6'),
+(17, 'Greek Delight', 'Katowice', '3 Maja', '78', '40-001', 'Śląskie', 'greek_delight_photo.jpg', 'username4'),
+(18, 'Sashimi Sensation', 'Kraków', 'ul. Floriańska', '12', '31-021', 'Małopolskie', 'sashimi_sensation_photo.jpg', 'username3'),
+(19, 'Healthy Bites', 'Poznań', 'Rynek Jeżycki', '56', '61-080', 'Wielkopolskie', 'healthy_bites_photo.jpg', 'username1'),
+(20, 'BBQ Bliss', 'Wrocław', 'Kiełbaśnicza', '23', '50-111', 'Dolnośląskie', 'bbq_bliss_photo.jpg', 'username2')
+
+	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:385)
+	at org.flywaydb.core.internal.command.DbMigrate.lambda$applyMigrations$1(DbMigrate.java:275)
+	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:55)
+	at org.flywaydb.core.internal.command.DbMigrate.applyMigrations(DbMigrate.java:274)
+	at org.flywaydb.core.internal.command.DbMigrate.migrateGroup(DbMigrate.java:247)
+	at org.flywaydb.core.internal.command.DbMigrate.lambda$migrateAll$0(DbMigrate.java:141)
+	at org.flywaydb.core.internal.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:69)
+	at org.flywaydb.core.internal.database.postgresql.PostgreSQLConnection.lock(PostgreSQLConnection.java:99)
+	at org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory.lock(JdbcTableSchemaHistory.java:139)
+	at org.flywaydb.core.internal.command.DbMigrate.migrateAll(DbMigrate.java:141)
+	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:98)
+	at org.flywaydb.core.Flyway$1.execute(Flyway.java:172)
+	at org.flywaydb.core.Flyway$1.execute(Flyway.java:124)
+	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:205)
+	at org.flywaydb.core.Flyway.migrate(Flyway.java:124)
+	at org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:66)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 18 common frames omitted
+Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Migration V1.003__add_seeds.sql failed
+--------------------------------------
+SQL State  : 23505
+Error Code : 0
+Message    : ERROR: duplicate key value violates unique constraint "s_restaurant_pkey"
+  Szczegóły: Key (id)=(1) already exists.
+Location   : db/migration/V1.003__add_seeds.sql (C:\Users\dobos\Desktop\projekty\foodly\target\classes\db\migration\V1.003__add_seeds.sql)
+Line       : 27
+Statement  : INSERT INTO s_restaurant (id, name, city, street, building_number, post_code, province, photo, owner_id)
+VALUES
+(1, 'Trattoria del Gusto', 'Warszawa', 'Nowy Świat', '123', '00-456', 'Mazowieckie', 'trattoria_photo.jpg', 'username1'),
+(2, 'Thai Spice', 'Kraków', 'Rynek Główny', '45', '30-062', 'Małopolskie', 'thai_spice_photo.jpg', 'username2'),
+(3, 'Sakura Sushi', 'Gdańsk', 'Długa', '67', '80-831', 'Pomorskie', 'sakura_sushi_photo.jpg', 'username3'),
+(4, 'Spice of India', 'Warszawa', 'Marszałkowska', '89', '02-678', 'Mazowieckie', 'spice_of_india_photo.jpg', 'username4'),
+(5, 'Mexican Fiesta', 'Kraków', 'Sławkowska', '34', '31-014', 'Małopolskie', 'mexican_fiesta_photo.jpg', 'username5'),
+(6, 'Olive Garden', 'Gdynia', 'Kościuszki', '56', '81-745', 'Pomorskie', 'olive_garden_photo.jpg', 'username6'),
+(7, 'Sushi Master', 'Poznań', 'Święty Marcin', '78', '61-804', 'Wielkopolskie', 'sushi_master_photo.jpg', 'username3'),
+(8, 'Green Eats', 'Wrocław', 'Kazimierza Wielkiego', '12', '50-077', 'Dolnośląskie', 'green_eats_photo.jpg', 'username2'),
+(9, 'Burger Heaven', 'Łódź', 'Piotrkowska', '23', '90-001', 'Łódzkie', 'burger_heaven_photo.jpg', 'username1'),
+(10, 'Pizza Palace', 'Katowice', 'Mariacka', '56', '40-014', 'Śląskie', 'pizza_palace_photo.jpg', 'username4'),
+(11, 'Pasta Paradise', 'Kraków', 'ul. Szewska', '67', '31-009', 'Małopolskie', 'pasta_paradise_photo.jpg', 'username11'),
+(12, 'Tom Yum Express', 'Warszawa', 'Chmielna', '45', '00-021', 'Mazowieckie', 'tom_yum_express_photo.jpg', 'username12'),
+(13, 'Tokyo Bites', 'Poznań', 'Żydowska', '23', '61-766', 'Wielkopolskie', 'tokyo_bites_photo.jpg', 'username13'),
+(14, 'Curry Kingdom', 'Wrocław', 'Świdnicka', '89', '50-069', 'Dolnośląskie', 'curry_kingdom_photo.jpg', 'username14'),
+(15, 'Taco Haven', 'Gdańsk', 'ul. Długa', '34', '80-001', 'Pomorskie', 'taco_haven_photo.jpg', 'username7'),
+(16, 'Oregano Fresh', 'Łódź', 'Narutowicza', '56', '90-102', 'Łódzkie', 'oregano_fresh_photo.jpg', 'username6'),
+(17, 'Greek Delight', 'Katowice', '3 Maja', '78', '40-001', 'Śląskie', 'greek_delight_photo.jpg', 'username4'),
+(18, 'Sashimi Sensation', 'Kraków', 'ul. Floriańska', '12', '31-021', 'Małopolskie', 'sashimi_sensation_photo.jpg', 'username3'),
+(19, 'Healthy Bites', 'Poznań', 'Rynek Jeżycki', '56', '61-080', 'Wielkopolskie', 'healthy_bites_photo.jpg', 'username1'),
+(20, 'BBQ Bliss', 'Wrocław', 'Kiełbaśnicza', '23', '50-111', 'Dolnośląskie', 'bbq_bliss_photo.jpg', 'username2')
+
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:275)
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:222)
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.execute(DefaultSqlScriptExecutor.java:126)
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.executeOnce(SqlMigrationExecutor.java:69)
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.lambda$execute$0(SqlMigrationExecutor.java:58)
+	at org.flywaydb.core.internal.database.DefaultExecutionStrategy.execute(DefaultExecutionStrategy.java:27)
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:57)
+	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:377)
+	... 35 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "s_restaurant_pkey"
+  Szczegóły: Key (id)=(1) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:329)
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:315)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:291)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:286)
+	at com.p6spy.engine.wrapper.StatementWrapper.execute(StatementWrapper.java:115)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.flywaydb.core.internal.jdbc.JdbcTemplate.executeStatement(JdbcTemplate.java:201)
+	at org.flywaydb.core.internal.sqlscript.ParsedSqlStatement.execute(ParsedSqlStatement.java:95)
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:210)
+	... 41 common frames omitted
+

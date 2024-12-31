@@ -1,0 +1,55 @@
+.card {
+  z-index: -1;
+  img {
+    min-height: 130px;
+    object-fit: cover;
+  }
+}
+.card-img-top {
+  min-width: 44px;
+  max-width: 52px;
+  margin: 0 auto;
+}
+.list-container {
+  overflow-x: scroll;
+  li {
+    cursor: pointer;
+  }
+}
+.restaurant {
+  transition: translate .3s;
+  &:hover {
+    translate: 0 -3%;
+  }
+
+}
+.category {
+  &__text {
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+}
+
+.list-container::-webkit-scrollbar {
+  width: 4px;
+  height: 5px;
+}
+
+.list-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 2px;
+}
+
+.list-container::-webkit-scrollbar-track {
+  cursor: pointer;
+  background: none;
+}
+.restaurants {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  li {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,56 @@
+<div class="modal" id="modal" aria-modal="true" tabindex="-1">
+  <div class="modal-dialog modal-dialog-scrollable modal-{{ size }}">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ title }}</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="close()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <ng-content select="[modal-body]"></ng-content>
+      </div>
+      <div class="modal-footer" *ngIf="showButtons">
+        <div class="modal-buttons d-flex" *ngIf="!modalButtons.children.length">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="reject()"
+            data-dismiss="modal"
+          >
+            Odrzuć
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            *ngIf="modalType"
+            (click)="confirm()"
+          >
+            Potwierdź
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            *ngIf="!modalType"
+            (click)="confirm()"
+          >
+            Potwierdź
+          </button>
+        </div>
+        <div #modalButtons>
+          <ng-content select="[modal-buttons]"></ng-content>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal-backdrop"
+  [ngClass]="{ 'modal-backdrop-active': showOverlay }"
+  *ngIf="showOverlay"
+></div>

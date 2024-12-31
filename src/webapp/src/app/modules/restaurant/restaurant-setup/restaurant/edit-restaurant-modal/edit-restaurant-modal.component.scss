@@ -1,0 +1,40 @@
+.dropdown-menu {
+  position: relative !important;
+  padding-top: 0;
+  padding-bottom: 0;
+  transform-origin: bottom;
+  transform: translate(0, 5px) !important;
+}
+.dropdown-items {
+  padding: 0.25rem 0 0;
+  max-height: 150px;
+  overflow-y: scroll;
+}
+
+li:has(input:checked) {
+  background-color: #eff6ff;
+}
+.checkbox {
+  width: 18px;
+  height: 18px;
+}
+label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.search-box {
+  position: relative;
+  padding: 0.5rem 1rem;
+  background-color: rgb(237, 237, 237);
+  .input-search {
+    padding: 0.25rem;
+    width: 100%;
+  }
+  .bi-search {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+  }
+}

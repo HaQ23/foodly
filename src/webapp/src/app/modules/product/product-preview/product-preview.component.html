@@ -1,0 +1,10 @@
+<app-modal [showButtons]="false" [size]="'lg'">
+    <div modal-body class="d-flex">
+        <img class="preview__image" src="../../../../assets/images/store/product-placeholder.jpeg" alt="Product image">
+        <div class="preview__info px-3">
+            <h2 class="fw-bold">{{product.name}}</h2>
+            <p class="fw-semibold fs-5 mb-2">{{product.price}} zł</p>
+            <p class="text-body-secondary m-0">{{product.description}}.</p>
+        </div>
+    </div>
+</app-modal>
