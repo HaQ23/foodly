@@ -91,19 +91,19 @@ Frontend aplikacji Foodly został stworzony z wykorzystaniem frameworka Angular 
 
 1. **Strona główna**:
    Na stronie głównej użytkownik widzi listę restauracji w postaci siatki:
-   ![Strona główna](../foodly/images/image1.png "Strona główna aplikacji")
+   ![Strona główna](images/image1.png "Strona główna aplikacji")
 
 2. **Strona szczegółów restauracji**:
    Szczegóły restauracji, takie jak menu oraz lokalizacja:
-   ![Szczegóły restauracji](../foodly/images/image2.png "Strona restauracji")
+   ![Szczegóły restauracji](images/image2.png "Strona restauracji")
 
 3. **Podgląd produktu w modalnym oknie**:
    Szczegóły dania w modalnym oknie:
-   ![Podgląd produktu](../foodly/images/image3.png "Modal - podgląd produktu")
+   ![Podgląd produktu](images/image3.png "Modal - podgląd produktu")
 4. **Pozostałe funkcjonalności**:
 
-![Podgląd produktu](../foodly/images/image4.png ".")
-![Podgląd produktu](../foodly/images/image5.png ".")
-![Podgląd produktu](../foodly/images/image6.png ".")
-![Podgląd produktu](../foodly/images/image7.png ".")
-![Podgląd produktu](../foodly/images/image8.png ".")
+![Podgląd produktu](images/image4.png ".")
+![Podgląd produktu](images/image5.png ".")
+![Podgląd produktu](images/image6.png ".")
+![Podgląd produktu](images/image7.png ".")
+![Podgląd produktu](images/image8.png ".")
